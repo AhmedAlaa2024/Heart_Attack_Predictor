@@ -88,10 +88,12 @@ while(True):
                 file_name = Request_filename()
             if response == 'n':
                 print('Then, I will use my own.')
+                Cleaner.Clean('./Data/heart.csv')
                 file_name = './Data/TrainingSet.csv'
             else:
                 print("I don't understand so I will suppose you said 'n'")
                 print('Then, I will use my own.')
+                Cleaner.Clean('./Data/heart.csv')
                 file_name = './Data/TrainingSet.csv'
             
         iterations, alpha, lamda = Request_Train_Startup()
@@ -124,10 +126,12 @@ while(True):
                 file_name = Request_filename()
             if response == 'n':
                 print('Then, I will use my own.')
+                Cleaner.Clean('./Data/heart.csv')
                 file_name = './Data/TestingSet.csv'
             else:
                 print("I don't understand so I will suppose you said 'n'")
                 print('Then, I will use my own.')
+                Cleaner.Clean('./Data/heart.csv')
                 file_name = './Data/TestingSet.csv'
                 
         start = timer()
