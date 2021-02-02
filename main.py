@@ -5,7 +5,7 @@ import Testing_Script as test
 import Data_Cleaner_Script as Cleaner
 from timeit import default_timer as timer 
 
-def Request_filename():
+def Request_filepath():
     error = None
     while(True):
         if error == None:
@@ -30,7 +30,7 @@ def Request_filename():
             except:
                 error = "File doesn't exist!"
                 continue
-    return file_name
+    return file_path
 
 
 def Request_Train_Startup():
@@ -56,11 +56,11 @@ while(True):
     
     option = input('Please, Enter the number of option: ')
     cleaned = False
-    file_name = ''
+    file_path = ''
     
     if option == '1':
-        file_name = Request_filename()
-        Cleaner.Clean(file_name)
+        file_path = Request_filepath()
+        Cleaner.Clean(file_path)
         cleaned = True
         
         response = input('Do you want another service? (y/n): ')
@@ -74,31 +74,31 @@ while(True):
             continue
     elif option == '2':
         if cleaned:
-            response = input("Do you want to use the TrainingSet.csv that is generated from the cleaned file '{}'? (y/n): ".format(file_name))
+            response = input("Do you want to use the TrainingSet.csv that is generated from the cleaned file '{}'? (y/n): ".format(file_path))
             if response == 'y':
-                file_name = './Data/TrainingSet.csv'
+                file_path = './Data/TrainingSet.csv'
             elif response == 'n':
-                file_name = Request_filename()
+                file_path = Request_filepath()
             else:
                 print("I don't understand so I will suppose you said 'y'")
-                file_name = './Data/TrainingSet.csv'
+                file_path = './Data/TrainingSet.csv'
         else:
             response = input('Do have a TrainingSet file? (y,n): ')
             if response == 'y':
-                file_name = Request_filename()
+                file_path = Request_filepath()
             if response == 'n':
                 print('Then, I will use my own.')
                 Cleaner.Clean('./Data/heart.csv')
-                file_name = './Data/TrainingSet.csv'
+                file_path = './Data/TrainingSet.csv'
             else:
                 print("I don't understand so I will suppose you said 'n'")
                 print('Then, I will use my own.')
                 Cleaner.Clean('./Data/heart.csv')
-                file_name = './Data/TrainingSet.csv'
+                file_path = './Data/TrainingSet.csv'
             
         iterations, alpha, lamda = Request_Train_Startup()
         start = timer()
-        train.Train(file_name, iterations, alpha, lamda)
+        train.Train(file_path, iterations, alpha, lamda)
         CalculateExecutionTime(start)
         response = input('Do you want another service? (y/n): ')
         if response == 'y':
@@ -112,30 +112,30 @@ while(True):
             break
     elif option == '3':
         if cleaned:
-            response = input("Do you want to use the TestingSet.csv that is generated from the cleaned file '{}'? (y/n): ".format(file_name))
+            response = input("Do you want to use the TestingSet.csv that is generated from the cleaned file '{}'? (y/n): ".format(file_path))
             if response == 'y':
-                file_name = './Data/TestingSet.csv'
+                file_path = './Data/TestingSet.csv'
             elif response == 'n':
-                file_name = Request_filename()
+                file_path = Request_filepath()
             else:
                 print("I don't understand so I will suppose you said 'y'")
-                file_name = './Data/TestingSet.csv'
+                file_path = './Data/TestingSet.csv'
         else:
             response = input('Do have a TestingSet file? (y,n): ')
             if response == 'y':
-                file_name = Request_filename()
+                file_path = Request_filepath()
             if response == 'n':
                 print('Then, I will use my own.')
                 Cleaner.Clean('./Data/heart.csv')
-                file_name = './Data/TestingSet.csv'
+                file_path = './Data/TestingSet.csv'
             else:
                 print("I don't understand so I will suppose you said 'n'")
                 print('Then, I will use my own.')
                 Cleaner.Clean('./Data/heart.csv')
-                file_name = './Data/TestingSet.csv'
+                file_path = './Data/TestingSet.csv'
                 
         start = timer()
-        test.Test(file_name)
+        test.Test(file_path)
         CalculateExecutionTime(start)
         response = input('Do you want another service? (y/n): ')
         if response == 'y':

@@ -10,7 +10,7 @@ def ScalingFeature(features):       # To apply feature scalling by Mean Normaliz
 
 
 def DataCleaning(file_name):
-    file_path = './Data/' + file_name
+    file_path = file_name
     Data_Frame = pd.read_csv(file_path)
     DataSet = np.array(Data_Frame)
 
