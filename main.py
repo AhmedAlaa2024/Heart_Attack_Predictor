@@ -3,6 +3,7 @@ import numpy as np
 import Training_Script as train
 import Testing_Script as test
 import Data_Cleaner_Script as Cleaner
+import Predictor
 from timeit import default_timer as timer 
 
 def Request_filepath():
@@ -148,19 +149,25 @@ while(True):
             print("Thank you sir. Please, visit me again!")
             break
     elif option == '4':
-        print("\nSorry, My developer is still working on this service. Please, choose another sevice!")
-        continue
-        # headers = ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg',
-        #         'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal', 'target']
-        # data = list()
-        # for header in headers:
-        #     data.append(float(input("Enter the patient's {}: ".format(header))))
-        # response = input('Do you want another service? (y/n): ')
-        # if response == 'y':
-        #     continue
-        # elif response == 'n':
-        #     print("Thank you sir. Please, visit me again!")
-        #     break
+        # print("\nSorry, My developer is still working on this service. Please, choose another sevice!")
+        # continue
+        headers = ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg',
+                'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal']
+        data = list()
+        for header in headers:
+            data.append(float(input("Enter the patient's {}: ".format(header))))
+        start = timer()
+        Predictor.Predict(data)
+        CalculateExecutionTime(start)
+        response = input('Do you want another service? (y/n): ')
+        if response == 'y':
+            continue
+        elif response == 'n':
+            print("Thank you sir. Please, visit me again!")
+            break
+        else:
+            print("I don't understand so I will suppose you said 'y'")
+            continue
     elif option == '5':
         response = input('Are you sure that you want to leave me? (y/n): ')
         if response == 'y':

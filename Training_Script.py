@@ -63,7 +63,7 @@ def Train(file_name, iterations, alpha, lamda):
             break
         
     try:
-        theta_vector = DescalingFeatures(theta_vector)
+        # theta_vector = DescalingFeatures(theta_vector)
         pd.DataFrame(theta_vector).to_csv("./results/results.csv", index=False, header=False)
     except:
         print("Error: DescalingFeatures process, Error Explain: Dividing on zero!")
