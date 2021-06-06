@@ -149,8 +149,6 @@ while(True):
             print("Thank you sir. Please, visit me again!")
             break
     elif option == '4':
-        # print("\nSorry, My developer is still working on this service. Please, choose another sevice!")
-        # continue
         headers = ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg',
                 'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal']
         data = list()

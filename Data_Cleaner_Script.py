@@ -2,13 +2,6 @@ import pandas as pd
 import numpy as np
 
 
-def ScalingFeature(features):       # To apply feature scalling by Mean Normalization method
-    
-    maxmin = features.max(axis=0) - features.min(axis=0)
-    mean = features.mean(axis=0)
-    return (features - mean) / (maxmin)
-
-
 def DataCleaning(file_name):
     file_path = file_name
     Data_Frame = pd.read_csv(file_path)
@@ -20,7 +13,6 @@ def DataCleaning(file_name):
 
     TrainingSet_features = TrainingSet[:,0:-1]
     TrainingSet_values = TrainingSet[:,-1]
-    TrainingSet_features = ScalingFeature(TrainingSet_features)
     TrainingSet = np.zeros(TrainingSet.shape)
     TrainingSet[:,0:-1] += TrainingSet_features
     TrainingSet[:,-1] += TrainingSet_values
@@ -31,7 +23,6 @@ def DataCleaning(file_name):
 
     TestingSet_features = TestingSet[:,0:-1]
     TestingSet_values = TestingSet[:,-1]
-    TestingSet_features = ScalingFeature(TestingSet_features)
     TestingSet = np.zeros(TestingSet.shape)
     TestingSet[:,0:-1] += TestingSet_features
     TestingSet[:,-1] += TestingSet_values
