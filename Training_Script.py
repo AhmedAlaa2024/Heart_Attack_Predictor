@@ -10,7 +10,7 @@ def SegmoidFunc(theta_vector, X_matrix):        # The implementation of the segm
 
 def CostFunc(theta_vector, X_matrix, Y_vector):
     Z = SegmoidFunc(theta_vector, X_matrix)
-    sum = np.nansum(Y_vector.T * np.log(Z)) + np.nansum((1 - Y_vector.T) * np.log(1 - Z))
+    sum = np.nansum(Y_vector.T @ np.log(Z)) + np.nansum((1 - Y_vector.T) @ np.log(1 - Z))
     m = Y_vector.shape
     m = m[0]
     return -1 * (sum / m) 
