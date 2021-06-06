@@ -9,9 +9,8 @@ def SegmoidFunc(theta_vector, X_matrix):        # The implementation of the segm
 
 
 def CostFunc(theta_vector, X_matrix, Y_vector):
-    Z = np.round(SegmoidFunc(theta_vector, X_matrix), 10)
-    print('Z = ', Z)
-    sum = np.dot(Y_vector.T, np.log(Z)) + np.dot((1 - Y_vector).T, np.log(1 - Z))
+    Z = SegmoidFunc(theta_vector, X_matrix)
+    sum = np.nansum(Y_vector.T * np.log(Z)) + np.nansum((1 - Y_vector.T) * np.log(1 - Z))
     m = Y_vector.shape
     m = m[0]
     return -1 * (sum / m) 
@@ -47,8 +46,6 @@ def Train(file_name, iterations, alpha, lamda):
     for i in range(iterations):
         try:
             if i < iterations - 1:
-                if i == 10:
-                    break
                 error = CostFunc(theta_vector, features_matrix, values)
                 print('Iteration #{}: Error = {} , Thetas = {}'.format(i + 1, error, theta_vector))
                 theta_vector -= GradientDescentFunc(theta_vector, alpha, features_matrix, values, lamda)
